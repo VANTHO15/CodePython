@@ -13,5 +13,5 @@ z=[3,4,2,3,4,5,3,4,6,7]
 ax.set_xlabel('X Label')
 ax.set_ylabel('Y Label')
 ax.set_zlabel('Z Label')
-ax.plot(x,y,z,'o')
+ax.plot(x,y,z,'x')
 plt.show()

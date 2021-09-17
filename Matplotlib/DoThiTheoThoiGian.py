@@ -3,6 +3,7 @@ import matplotlib.animation as animation
 
 fig =plt.figure()
 ax=fig.add_subplot(1,1,1)
+dem=0
 def refreshInputData(i):
     print("Refresh data...")
     nhietdoData=open("nhietso.txt","r").read()

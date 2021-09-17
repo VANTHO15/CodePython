@@ -7,4 +7,3 @@ class HocSinh():
         print("Bạn vừa Xóa rồi ")
 tho=HocSinh("Nguyễn Văn Thọ","18CDT1")
 print(tho)
-del tho
