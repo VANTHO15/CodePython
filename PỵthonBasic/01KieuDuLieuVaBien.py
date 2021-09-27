@@ -1,3 +1,3 @@
-x=5
-y=10
-print("tho= ", x, "Ahihi=", y)
+x = 5
+y = 10
+print("x1= ", x, "Thái Thị Nga", y)

@@ -1,7 +1,5 @@
 from math import *
-from time import clock
 
-start= clock()
 x= sqrt(4)
 y= pow(2,5)
 z=log(10)
@@ -10,5 +8,4 @@ m=cos(0.3)
 print(x,"  ",y," ",z," ",m)
 x= 10/3
 print(round(x,2))
-end= clock()
-print(start-end)
+

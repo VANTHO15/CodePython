@@ -2,8 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 dataframe = pd.read_csv('Advertising.csv')
-X = dataframe.values[: , 2]
-y = dataframe.values[: , 4]
+X = dataframe.values[: , 2]  # lấy tất cả các dòng của cột thứ 2 (Radio)
+y = dataframe.values[: , 4]  # Lấy (sales)
+# plt.scatter(X,y,marker="o")     vẽ lên cho zui
+
+# Sales = Weight * Radio + Bias
 
 def predict_sales(radio, weight, bias):
     return weight*radio + bias
@@ -46,7 +49,7 @@ def train(radio, sales, weight, bias, learning_rate, iters):
 
     return weight, bias, cost_history
 
-weight, bias, cost = train(X,y, 0.03, 0.0014, 0.001, 30)
+weight, bias, cost = train(X,y, 0.03, 0.0014, 0.001, 100)
 print("ket qua la :")
 print(weight)
 print(bias)
@@ -54,6 +57,7 @@ print(cost)
 print("gia tri du doan : ")
 print(predict_sales(19, weight, bias))
 
-solanlap = [i for i in range(30)]
+solanlap = [i for i in range(100)]
+print(solanlap)
 plt.plot(solanlap , cost)
 plt.show()
