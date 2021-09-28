@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
 from sklearn.impute import SimpleImputer
 from mpl_toolkits.mplot3d import axes3d
 from sklearn import tree
@@ -11,9 +12,11 @@ from sklearn.datasets import load_iris
 ## ham train_test_split se tach bo train voi bo test ra rieng biet de xay dung model voi nhung thu vien dataset
 ## ham train_test_split se tra ve 4 doi so,  doi so 1 danh cho x_train dung de trainning voi doi so thu 3 y_train
 ## 2 doi so con lai tuong tu nhung dung de test
+
 # Hàm sigmoid
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
+
 # Load data từ file csv
 data = pd.read_csv('data_classification.csv',header=None).values
 N, d = data.shape
@@ -31,7 +34,7 @@ for i in data :
         false_x.append(i[0])
         false_y.append(i[1])
 def predict(features,weights):
-    """
+    """ bấm 3 dấu nháy
     :param features: mảng các đặc tính (100 * 3 ) slept studied và 1
     :param weights: gồm ma trận (1*3) w0 w1 w2
     khi nhân vô hướng sẽ ra được hàm z  = slept*w1 + studied*w2 +1 *1
@@ -41,7 +44,6 @@ def predict(features,weights):
     return sigmoid(z)
 def loss_function(features,labels,weights):
     """
-
     :param features: mảng các đặc tính (100 * 3 ) slept studied và 1
     :param labels:
     :param weights: gồm ma trận (1*3) w0 w1 w2
@@ -53,20 +55,20 @@ def loss_function(features,labels,weights):
     prediction 
     example : [0.6,0.7,0.5,0.4]
     """
-    loss_class1 = -labels*np.log(prediction)
+    loss_class1 = -labels*np.log(prediction) # nếu lable =0 thì bằng 0 còn bằng 1 thì nó giữ nguyên
     loss_class2 = -(1-labels)*np.log(1-prediction)
     loss = loss_class1+loss_class2
     return np.sum(loss)
-def decisionBoundary(p) :
+def decisionBoundary(p) :  # phân chia
     if p >= 0.5 : return 1
     else: return 0
+
 def update_weight (features,labels,weights,learning_rate) :
     """
-
     :param features: mảng các đặc tính (100 * 3 ) slept studied và 1
     :param labels: mảng các nhãn ( 100*1 )
     :param weights: gồm ma trận (1*3) w0 w1 w2
-    :param learning_rate:
+    :param learning_rate: float
     (prediction -labels) sẽ ra được mảng các khoảng cách giữa giá trị thực và giá trị dự đoán là bao xa của các đặc tính
     sau đó nhân vô hướng với các đặc tính
     Lý giải : áp dụng biểu thức chain rule để đạo hàm ra hàm chi phí là hàm weight_temp ( có trong ảnh cách chứng minh ).
@@ -74,7 +76,7 @@ def update_weight (features,labels,weights,learning_rate) :
     :return:
     """
     n=len(labels)
-    prediction = predict(features,weights)
+    prediction = predict(features,weights) # giá trị dự đoán của tât cả các điểm
     weights_temp = np.dot(features.T,(prediction-labels))/n
     updated_weight = weights-weights_temp*learning_rate
     return updated_weight
@@ -100,6 +102,7 @@ print("Value will be predicted for student who slept {} hours and studied {} hou
 if (decisionBoundary(temp)==1) :
     print("Predict value is {}. So this student will pass!!".format(decisionBoundary(temp)))
 else: print("Predict value is {}. So this student will fail!!".format(decisionBoundary(temp)))
+
 plt.scatter(true_x,true_y,marker="o",c="y",edgecolors='none', s=30, label='Pass')
 plt.scatter(false_x,false_y,marker="o",c="r",edgecolors='none', s=30, label='Fail')
 plt.legend(loc=1)
